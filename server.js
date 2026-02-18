@@ -82,6 +82,17 @@ app.use((req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`URL: http://localhost:${PORT}`);
-});
+// Export for Vercel
+export default app;
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`URL: http://localhost:${PORT}`);
+    });
+} else {
+    // In many production environments (like Vercel), we don't call app.listen()
+    // but some environments still need it. Adjust as needed.
+    app.listen(PORT, () => {
+        console.log(`Server started on port ${PORT}`);
+    });
+}
