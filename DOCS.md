@@ -60,7 +60,28 @@ To start the project locally, follow these steps:
    Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ## 5. File References
-- [index.html](file:///Users/kanikabajaj/Desktop/testing/index.html)
-- [src/App.jsx](file:///Users/kanikabajaj/Desktop/testing/src/App.jsx)
-- [src/pages/About.jsx](file:///Users/kanikabajaj/Desktop/testing/src/pages/About.jsx)
 - [src/pages/Home.jsx](file:///Users/kanikabajaj/Desktop/testing/src/pages/Home.jsx)
+
+## 6. Advanced SEO with Helmet
+To ensure that crawlers (like LinkedIn) can access the meta tags, we integrated `react-helmet-async`.
+
+### Installation
+```bash
+npm install react-helmet-async --legacy-peer-deps
+```
+
+### Configuration
+1. **Provider Setup**: Wrapped the app in `HelmetProvider` in `src/main.jsx`.
+2. **Dynamic Tags**: Used the `<Helmet>` component in `Home.jsx` and `About.jsx` to define SEO data.
+
+## 7. Server-Side SEO (Crawler Support)
+Since crawlers often don't execute JavaScript, we use an Express server to "inject" tags into the HTML before it leaves the server.
+
+### How it works:
+- **`server.js`**: An Express server that reads the built `index.html` and uses a helper function `injectMetaTags` to swap out titles and add `<meta>` tags dynamically based on the URL.
+- **Path Handled**: Specifically handles `/about` to provide detailed LinkedIn-friendly metadata.
+
+### Deployment/Running:
+1. **Build the app**: `npm run build`
+2. **Start the crawler-friendly server**: `npm run serve`
+3. **Verify**: Use `curl http://localhost:3000/about` to see the tags in the raw source.
