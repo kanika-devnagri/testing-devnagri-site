@@ -10,7 +10,7 @@ export const seoConfig = {
         ogType: "website",
     },
     "/about": {
-        title: "About | Kanika's Project",
+        title: "About | Kanika's Projt",
         description: "Learn more about Kanika and the technical journey behind this React Vite project. Understanding the architecture and design decisions that make this app high-quality.",
         keywords: "Kanika, About, React, Vite, Developer, Architecture",
         ogTitle: "About Kanika",
